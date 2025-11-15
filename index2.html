@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Salissou Saidou Zaneidou</title>
+
+    <style>
+        /* ======== VARIABLES ET STYLES GÉNÉRAUX ======== */
+        :root {
+            --couleur-principale: #00f2ea; /* Accent turquoise */
+            --couleur-fond: #222;
+            --couleur-fond-secondaire: #333;
+            --couleur-texte: #fff;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Pour le défilement fluide des ancres */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--couleur-fond);
+            color: var(--couleur-texte);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--couleur-principale);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto; /* Centre le contenu */
+        }
+
+        /* ======== HEADER (Navigation) ======== */
+        header {
+            background-color: var(--couleur-fond-secondaire);
+            border-bottom: 1px solid var(--couleur-principale);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav .logo a {
+            color: var(--couleur-principale);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: var(--couleur-texte);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--couleur-principale);
+        }
+
+        /* ======== BOUTONS ======== */
+        .btn {
+            display: inline-block;
+            background-color: var(--couleur-principale);
+            color: var(--couleur-fond);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ======== SECTION ACCUEIL ======== */
+        #accueil {
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #accueil h1 {
+            font-size: 3rem;
+        }
+
+        #accueil p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        /* ======== SECTION À PROPOS ======== */
+        .a-propos-contenu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%; /* Image ronde */
+            object-fit: cover;
+            border: 3px solid var(--couleur-principale);
+        }
+
+        /* ======== SECTION PROJETS ======== */
+        .projets-grille {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .projet-carte {
+            background-color: var(--couleur-fond-secondaire);
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .projet-carte h3 {
+            margin-top: 0;
+        }
+
+        .projet-carte .tags {
+            font-style: italic;
+            color: #ccc;
+        }
+
+        .btn-voir {
+            color: var(--couleur-principale);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ======== SECTION COMPÉTENCES ======== */
+        .competences-contenu {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .colonne {
+            background-color: var(--couleur-fond-secondaire);
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+        }
+
+        .colonne h3 {
+            text-align: center;
+        }
+
+        .colonne ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .colonne li {
+            background-color: #444;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* ======== SECTION CONTACT ======== */
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-groupe {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-groupe input {
+            width: 50%;
+        }
+
+        #contact-form input,
+        #contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: #444;
+            border: 1px solid #555;
+            color: var(--couleur-texte);
+            border-radius: 5px;
+            box-sizing: border-box; /* Assure que le padding n'affecte pas la largeur */
+        }
+
+        #contact-form button {
+            width: 150px;
+            align-self: center;
+        }
+
+        .contact-direct {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* ======== FOOTER ======== */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+        }
+    </style>
+    </head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">Zaneidou</a>
+            </div>
+            <ul>
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil">
+            <h1>Je suis Salissou Saidou Zaneidou</h1>
+            <p>Étudiant en Électronique Électrotechnique Automatique (EEA), 
+               passionné par le développement numérique, notamment le Développement web.</p>
+            <a href="#projets" class="btn">Voir mes projets</a>
+        </section>
+
+        <section id="a-propos">
+            <h2>À propos de moi</h2>
+            <div class="a-propos-contenu">
+                <img src="My-picture.png" alt="Photo de Salissou Saidou Zaneidou" class="profile-pic">
+                <div>
+                    <p>Je suis passionné par la création de sites web modernes et interactifs.</p>
+                    <p>Actuellement étudiant en EEA, je maîtrise les bases de HTML, CSS et JavaScript. J'ai aussi des compétences en développement embarqué, traitement de signal, et analyse d'images médicales.</p>
+                    <a href="My-Resumé.pdf" class="btn" download>Télécharger mon CV</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2>Mes Projets</h2>
+            <div class="projets-grille">
+                
+                <div class="projet-carte">
+                    <h3>Projet 1 : Mini-jeu JavaScript</h3>
+                    <p>Un mini-jeu interactif en JavaScript qui utilise des événements DOM.</p>
+                    <p class="tags">#html #css #js</p>
+                    <a href="#" class="btn-voir">Voir</a>
+                </div>
+
+                <div class="projet-carte">
+                    <h3>Projet 2 : Site Web Statique</h3>
+                    <p>Un site vitrine pour une entreprise locale, codé en HTML5 et CSS3.</p>
+                    <p class="tags">#html #css</p>
+                    <a href="#" class="btn-voir">Voir</a>
+                </div>
+
+                <div class="projet-carte">
+                    <h3>Projet 3 : Application de Watermarking</h3>
+                    <p>Projet d'étude sur la protection de données médicales via la technique de watermarking.</p>
+                    <p class="tags">#python #matlab</p>
+                    <a href="#" class="btn-voir">Voir</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="competences">
+            <h2>Mes Compétences</h2>
+            <div class="competences-contenu">
+
+                <div class="colonne">
+                    <h3>Hard Skills</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Matlab</li>
+                        <li>Arduino</li>
+                        <li>VS Studio / VS Code</li>
+                        <li>Développement embarqué</li>
+                        <li>Traitement de signal</li>
+                        <li>Analyse d'image médicale</li>
+                    </ul>
+                </div>
+
+                <div class="colonne">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Gestion de projet</li>
+                        <li>Résolution de problème</li>
+                        <li>Adaptabilité</li>
+                        <li>Curiosité technique</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Vous avez un projet en tête ?</h2>
+            <p>N'hésitez pas à me contacter</p>
+
+            <form id="contact-form">
+                <div class="form-groupe">
+                    <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                </div>
+                <input type="text" id="sujet" name="sujet" placeholder="Votre sujet" required>
+                <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+
+            <div class="contact-direct">
+                <p>Ou contactez-moi directement :</p>
+                <p>Email : zaneidou80@gmail.com</p>
+                <p>Tél : +22797331574</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Développé par Zaneidou</p>
+        <p>&copy; 2025 Tous droits réservés</p>
+    </footer>
+
+    
+    <script>
+        // Attendre que le contenu de la page soit entièrement chargé
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Sélectionner le formulaire de contact
+            const contactForm = document.getElementById("contact-form");
+
+            // Ajouter un écouteur d'événement pour la soumission du formulaire
+            contactForm.addEventListener("submit", function(event) {
+                
+                // Empêcher l'envoi du formulaire par défaut
+                event.preventDefault(); 
+
+                // Récupérer les valeurs des champs
+                const prenom = document.getElementById("prenom").value;
+                const nom = document.getElementById("nom").val;
+                const sujet = document.getElementById("sujet").value;
+                const message = document.querySelector("textarea[name='message']").value;
+
+                // Validation simple : vérifier que les champs ne sont pas vides
+                if (prenom === "" || nom === "" || sujet === "" || message === "") {
+                    alert("Veuillez remplir tous les champs du formulaire.");
+                } else {
+                    // Si tout est rempli (simulation d'envoi)
+                    alert("Merci, " + prenom + "! Votre message a été (simulé) envoyé.");
+                    
+                    // Vider le formulaire après l'envoi
+                    contactForm.reset();
+                }
+            });
+
+        });
+    </script>
+    </body>
+</html>
